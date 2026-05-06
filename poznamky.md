@@ -7,3 +7,4 @@ Toto je repo pro aplikaci využívající konceptu flashcards, která je hlavně
 - integrovat fotky
 - propojit jednotlivé karty s konkrétním místem v dokumentu
 - udělat proklik přes kartu/události mezi kartami, mapou i časovou osou
+- umožnit otevření vtváření karty vedle zobrazení jiné komponenty (hlavně možnost zobrazení dokumentu a vytvoření karty najednou
