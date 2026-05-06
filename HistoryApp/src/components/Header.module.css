@@ -1,0 +1,158 @@
+/* =========================================
+   DESKTOP & BASE STYLES
+========================================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  /* Use color-mix to keep your slight transparency effect while using variables */
+  background-color: color-mix(in srgb, var(--bg-secondary) 95%, transparent);
+  backdrop-filter: blur(8px); 
+  border-bottom: 1px solid var(--bg-tertiary); /* Swapped to variable */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+a.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-main); 
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+a.logo:hover {
+  color: var(--accent-blue);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+/* Base styling for ALL nav links and buttons */
+.navLink, .modeToggle {
+  display: flex;             /* Align icon and text horizontally */
+  align-items: center;       /* Center them vertically */
+  justify-content: center;   /* Keep content centered */
+  gap: 8px;                  /* Space between icon and text */
+  text-decoration: none;
+ color: var(--text-muted); /* Swapped to variable */
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;       /* Prevents text from dropping to next line */
+}
+
+.navLink:hover {
+  color: #88c0d0;
+  background-color: rgba(136, 192, 208, 0.1);
+}
+
+/* Icon & Text Specifics */
+.icon {
+  flex-shrink: 0;
+  color: inherit; /* Icons automatically take the color of their parent button */
+}
+
+/* .navText is used to easily hide the text on mobile */
+.navText {
+  display: block; 
+}
+
+/* =========================================
+   SPECIFIC BUTTON STATES 
+========================================= */
+
+/* The View/Edit Mode Toggle */
+.modeToggle {
+  border: 1px solid var(--bg-tertiary);
+  background-color: var(--bg-secondary);
+}
+
+
+.modeToggle.editActive {
+  border-color: #bf616a; 
+  color: #bf616a;
+  background-color: rgba(191, 97, 106, 0.1);
+}
+
+.modeToggle.viewActive {
+  border-color: #a3be8c; 
+  color: #a3be8c;
+  background-color: rgba(163, 190, 140, 0.1);
+}
+
+.primaryBtn {
+  border: 1px solid #88c0d0;
+  color: #88c0d0;
+}
+
+.primaryBtn:hover {
+  background-color: #88c0d0;
+  color: #2e3440;
+}
+
+.logoutBtn {
+  color: #d08770; 
+}
+
+.logoutBtn:hover {
+  background-color: rgba(208, 135, 112, 0.1);
+  color: #d08770;
+}
+
+.themeToggle {
+  color: var(--text-muted);
+}
+
+
+.themeToggle:hover {
+  color: var(--accent-orange); /* Fits better than hardcoded gold */
+  background-color: rgba(208, 135, 112, 0.1); 
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (ICONS ONLY)
+========================================= */
+@media (max-width: 640px) {
+  .header {
+    padding: 0.75rem 1rem; /* Slimmer header vertically */
+  }
+
+  .logo {
+    display: none; /* Hide text logo to save space */
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end; /* Docks buttons cleanly to the right */
+    gap: 0.5rem; 
+  }
+
+  .nav > :first-child {
+    margin-right: auto;
+  }
+
+  /* 1. Hide the text completely */
+  .navText {
+    display: none;
+  }
+
+  /* 2. Turn the buttons into perfect, tap-friendly squares */
+  .navLink, 
+  .modeToggle {
+    padding: 0.6rem; /* Equal padding all around */
+    gap: 0;          /* Remove the 8px gap since text is gone */
+  }
+}

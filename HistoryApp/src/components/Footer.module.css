@@ -1,0 +1,26 @@
+/* Update Footer.module.css */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--bg-tertiary); 
+  background-color: var(--bg-secondary); /* Now swaps nicely! */
+}
+
+.footer p {
+  margin: 0;
+  color: var(--text-muted); /* Ensures readable text in both modes */
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 0.8rem 1rem; 
+  }
+  .footer p {
+    font-size: 0.75rem; 
+  }
+}

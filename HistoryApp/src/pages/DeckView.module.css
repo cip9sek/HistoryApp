@@ -1,0 +1,478 @@
+/* Container & Layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Take full height of the parent */
+  width: 100%;
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* --- Header & Controls --- */
+.header {
+  padding: 1rem;
+  text-align: center;
+}
+
+.deckTitle {
+  margin: 0;
+}
+
+/* --- Editable Title Styles --- */
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  min-height: 40px;
+  /* Prevents layout jump when switching to input */
+}
+
+.titleWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.titleEditIcon {
+  color: #4c566a;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.titleEditable {
+  cursor: pointer;
+}
+
+.titleEditable:hover {
+  background-color: rgba(76, 86, 106, 0.2);
+  border-color: #4c566a;
+}
+
+.titleEditable:hover .titleEditIcon {
+  opacity: 1;
+  color: #88c0d0;
+}
+
+/* Title Input Mode */
+.titleEditWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-blue);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.titleInput {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  /* Fixes invisible text while typing */
+  font-size: 1.5rem;
+  /* Matches h2 roughly */
+  font-weight: bold;
+  font-family: inherit;
+  text-align: center;
+  outline: none;
+  width: 300px;
+  max-width: 100%;
+}
+
+.titleActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #a3be8c;
+  /* Green for save */
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.titleActionBtn:hover {
+  background-color: rgba(163, 190, 140, 0.2);
+}
+
+.titleCancelBtn {
+  color: #bf616a;
+  /* Red for cancel */
+}
+
+.titleCancelBtn:hover {
+  background-color: rgba(191, 97, 106, 0.2);
+}
+
+
+/* Scrollable wrapper for mobile buttons */
+.controlsScrollWrapper {
+  width: 100%;
+  overflow-x: auto;
+  /* Lets buttons scroll horizontally on tiny screens */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5px;
+  /* Space for scrollbar if it appears */
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  /* Tighter gap for mobile */
+  width: max-content;
+  /* Forces items not to crush each other */
+  margin: 0 auto;
+}
+
+/* --- Buttons --- */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6em 1em;
+  /* Slightly smaller padding */
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  white-space: nowrap;
+  /* Prevents button text from breaking into two lines */
+  transition: filter 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btnAdd {
+  background-color: #5e81ac;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btnDoc {
+  background-color: #646cff;
+}
+
+.btnDocActive {
+  background-color: #4c566a;
+}
+
+.btnTimeline {
+  background-color: #d08770;
+}
+
+.btnMap {
+  background-color: #a3be8c;
+  color: #2e3440;
+}
+
+.btnDelete {
+  background-color: #bf616a;
+}
+
+.btnSave {
+  background-color: #a3be8c;
+  color: #2e3440;
+}
+
+.btnCancel {
+  background-color: #bf616a;
+}
+
+.active {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  filter: brightness(0.9);
+}
+
+/* --- Main Content Area --- */
+.mainContent {
+  flex-grow: 1;
+  /* Pushes everything down, fills available space */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* For Text/Cards: Keeps them readable in the center */
+.contentConstrained {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* For Map/Timeline: Lets them stretch infinitely */
+.fullSpaceWrapper {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Document View Details --- */
+.documentWrapper {
+  text-align: left;
+  background-color: var(--bg-secondary);
+  /* Removed #2d3748 */
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  min-height: 200px;
+  color: var(--text-main);
+  /* Removed #eceff4 */
+}
+
+.editIconBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #88c0d0;
+  color: #2e3440;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.docEditor {
+  width: 100%;
+  min-height: 300px;
+  padding: 10px;
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.editActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.markdownView {
+  line-height: 1.6;
+}
+
+.markdownView h1,
+.markdownView h2 {
+  color: var(--accent-blue);
+  border-bottom: 1px solid var(--bg-tertiary);
+  margin-top: 1.5em;
+}
+
+.markdownView blockquote {
+  border-left: 4px solid var(--accent-blue);
+  color: var(--text-muted);
+}
+
+/* --- Card View Details --- */
+.cardFormWrapper {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.flashcardContainer {
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+  min-height: 350px;
+  /* Matches the scene height */
+  margin-bottom: 20px;
+}
+
+.cardActions {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.textBtn {
+  background: transparent;
+  border: 1px solid #88c0d0;
+  color: #88c0d0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.textBtn:hover {
+  background: rgba(136, 192, 208, 0.1);
+}
+
+.dangerText {
+  border-color: #bf616a;
+  color: #bf616a;
+}
+
+.dangerText:hover {
+  background: rgba(191, 97, 106, 0.1);
+}
+
+.cardNav {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.navBtn {
+  background-color: var(--bg-tertiary); 
+  color: var(--text-main);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 6em;
+}
+
+.navBtn:hover {
+  background-color: #5e81ac;
+}
+
+.cardCounter {
+  font-weight: bold; 
+  color: var(--text-muted);
+}
+
+.emptyText {
+  font-style: italic;
+  color: #888;
+  text-align: center;
+}
+
+/* --- Desktop Helpers --- */
+.mobileIcon {
+  display: none;
+}
+
+.desktopText {
+  display: inline;
+}
+
+/* Keep desktop layout exactly the same */
+.viewGroup,
+.actionGroup {
+  display: flex;
+  gap: 8px;
+}
+
+/* Fallback color for the new Cards & Order buttons on desktop */
+.btnCard {
+  background-color: var(--bg-tertiary); 
+  color: var(--text-main);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (MAX 600px)
+========================================= */
+@media (max-width: 600px) {
+  .titleInput {
+    width: 200px;
+    font-size: 1.25rem;
+  }
+
+  .controlsScrollWrapper {
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .mobileIcon {
+    display: inline-block;
+  }
+
+  .desktopText {
+    display: none;
+  }
+
+  /* Edit Actions Row */
+  .actionGroup {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .actionGroup .btn,
+  .btnDelete {
+    flex: 1;
+    padding: 12px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Segmented Control Morph */
+  .viewGroup {
+    display: flex;
+    width: 100%;
+    gap: 0;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+    order: -1;
+    /* Keeps the view modes anchored to the top */
+  }
+
+  /* Distributes all 5 buttons equally */
+  .viewGroup .btn {
+    flex: 1;
+    border-radius: 0;
+    background-color: transparent !important;
+    color: var(--text-muted) !important;
+    border-right: 1px solid var(--bg-tertiary);
+    padding: 14px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .viewGroup .btn:last-child {
+    border-right: none;
+  }
+
+  .viewGroup .btn.active,
+  .viewGroup .btnDocActive {
+    background-color: var(--bg-tertiary) !important; 
+    color: var(--text-main) !important;
+    filter: none;
+  }
+}

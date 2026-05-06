@@ -1,0 +1,107 @@
+.container {
+  width: 92%;
+  max-width: 1400px;
+  /* Expanded for 2K/4K monitors */
+  margin: 0 auto;
+  padding: 3rem 0 5rem 0;
+}
+
+.title {
+  text-align: left;
+  /* Left alignment looks much more modern for dashboards */
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.emptyState {
+  color: #d8dee9;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+/* DeckListView.module.css */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Slightly darker and less saturated than standard Nord #3B4252 */
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-top: 3px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  margin: 0 0 0.75rem 0;
+  color: var(--text-main);
+  font-size: 1.25rem;
+}
+
+.description {
+  margin: 0 0 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.countBadge {
+  align-self: flex-start;
+  /* Make the badge background transparent with just the accent border */
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-top: auto;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem 0 3rem 0;
+    /* Tighter top padding for mobile */
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    /* Forces exactly 1 column */
+    gap: 1.5rem;
+    /* Consistent gap between cards */
+    grid-auto-rows: 1fr;
+    /* Forces every card to match the tallest one */
+  }
+
+  .cardLink {
+    height: 100%;
+    /* display: block is REMOVED so it keeps your base display: flex */
+  }
+}

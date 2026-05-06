@@ -1,0 +1,110 @@
+/* 1. The Scene (Perspective Container) */
+.scene {
+  width: 100%;
+  max-width: 500px; /* Limit width on large screens */
+  min-height: 250px;
+  perspective: 1000px; /* Gives the 3D depth */
+  cursor: pointer;
+  margin: 0 auto; /* Center in parent */
+}
+
+/* Focus style for accessibility */
+.scene:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  border-radius: 10px;
+}
+
+/* 2. The Card (The object that rotates) */
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+
+  /* The Grid Trick: Stack faces on top of each other */
+  display: grid;
+}
+
+/* Rotate when flipped */
+.isFlipped {
+  transform: rotateY(180deg);
+}
+
+/* 3. The Faces (Front and Back) */
+.face {
+  /* Both faces occupy the same grid cell */
+  grid-area: 1 / 1;
+
+  /* Styling */
+  background-color: var(--bg-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+
+  /* 3D Properties */
+  backface-visibility: hidden; /* Hide the back when rotated */
+
+  /* Content Alignment */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Front Face Specifics */
+.faceFront {
+  z-index: 2;
+  transform: rotateY(0deg);
+  border: 1px solid var(--bg-tertiary);
+}
+
+/* Back Face Specifics */
+.faceBack {
+  transform: rotateY(180deg); /* Start rotated away */
+  background-color: var(--bg-secondary); /* Slightly different shade for back */
+  border: 1px solid var(--accent-blue); /* Border to indicate "Answer" side */
+}
+
+/* --- TEXT STYLES --- */
+
+.content {
+  width: 100%;
+}
+
+.frontText {
+  font-size: 1.75em;
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 3em;
+}
+
+.hint {
+  position: absolute;
+  bottom: 15px; /* Pins it to the absolute bottom of the card */
+  left: 0;
+  width: 100%; /* Ensures it stays centered */
+
+  font-size: 0.85em;
+  color: var(--accent-blue);
+  opacity: 0.8;
+  pointer-events: none; /* Prevents it from accidentally blocking clicks */
+}
+
+.backText {
+  font-size: 1.5em;
+  color: var(--accent-green);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.cardText {
+  font-size: 0.95em;
+  color: var(--text-muted);
+  padding-top: 1rem;
+  border-top: 1px dashed var(--accent-blue);
+  width: 100%;
+  line-height: 1.5;
+}

@@ -1,0 +1,145 @@
+/* --- Global Setup --- */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-main); /* Hooks the global color to your variable */
+  background-color: var(--bg-main);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* DARK MODE VARIABLES (Default) */
+  --bg-main: #2e3440;       /* Main background */
+  --bg-secondary: #3b4252;  /* Cards, header, inputs */
+  --bg-tertiary: #4c566a;   /* Hover states, borders */
+  
+  --text-main: #eceff4;     /* Primary text (white/light blue) */
+  --text-muted: #d8dee9;    /* Secondary text */
+  
+  --accent-blue: #88c0d0;
+  --accent-green: #a3be8c;
+  --accent-red: #bf616a;
+  --accent-orange: #d08770;
+}
+
+/* FIX: Added :root here to increase CSS specificity.
+  This ensures light mode ALWAYS wins over any stray dark mode rules.
+*/
+:root[data-theme="light"] {
+  --bg-main: #fbfcff;       /* Light gray background */
+  --bg-secondary: #f7f7f7;  /* White cards/header */
+  --bg-tertiary: #bcbdbe;   /* Light borders/hover states */
+  
+  --text-main: #2e3440;     /* Dark text */
+  --text-muted: #4c566a;    /* Muted dark text */
+  
+  --accent-blue: #5e81ac;   /* Darker blue for contrast on light bg */
+  --accent-green: #8fbcbb;
+  --accent-red: #bf616a;    
+  --accent-orange: #d08770;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth fade! */
+}
+
+/* --- App Layout --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  padding-bottom: 2em;
+  width: 100%;
+  position: relative;
+}
+
+.loading-state {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Global Elements --- */
+a {
+  font-weight: 500;
+  color: var(--accent-blue); /* Let's use your beautiful Nord blue instead of default Vite purple */
+  text-decoration: inherit;
+  transition: color 0.2s;
+}
+
+a:hover {
+  filter: brightness(1.2); /* A trick to make the hover state pop automatically */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-secondary); /* Now buttons automatically adapt globally */
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+}
+
+button:hover {
+  border-color: var(--accent-blue);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* --- LEAFLET MAP STYLES --- */
+path.fuzzy-area {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+path.fuzzy-area:hover {
+  filter: blur(2px);
+  fill-opacity: 0.6;
+}
+
+path.defined-area {
+  filter: none;
+  stroke-dasharray: 5, 5;
+}
+
+.custom-pushpin {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-pushpin:hover {
+  transform: scale(1.2) translateY(-5px);
+  z-index: 1000 !important;
+}

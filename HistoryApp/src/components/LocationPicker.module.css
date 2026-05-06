@@ -1,0 +1,15 @@
+.pickerContainer {
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #4c566a;
+  background-color: #2e3440; /* Prevents white flashes while tiles load */
+  position: relative;
+  z-index: 1; /* Keeps drawing controls from spilling over other elements */
+}
+
+.leafletMap {
+  height: 100%;
+  width: 100%;
+}
